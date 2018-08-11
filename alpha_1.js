@@ -862,8 +862,8 @@ cDiv.setAttribute("id", "pop_container");
 document.body.appendChild(cDiv);
 cDiv.style.display = "inline-block";
 cDiv.style.position = "fixed";
-cDiv.style.top = "300px";
-cDiv.style.left = "50%";
+cDiv.style.top = "20px";
+cDiv.style.left = "2%";
 cDiv.style.width = "26%";
 cDiv.style.height = "50%";
 cDiv.style.border = "1px solid DarkSlateGrey ";
@@ -1012,9 +1012,9 @@ function expand(){
         expandSwitcher(["60%", "50%"], "90");
     }
     if(currentWidth == "60%"){
-        expandSwitcher(["26%", "75%"], "-90");
+        expandSwitcher(["26%", "85%"], "-90");
     }
-    if(currentHeight == "75%" && currentWidth == "26%"){
+    if(currentHeight == "85%" && currentWidth == "26%"){
         expandSwitcher(["26%", "12%"], "90");
     }
     if(currentHeight == "12%" && currentWidth == "26%"){
@@ -1041,7 +1041,7 @@ function execute(){
 
 function saveTo(){
     var regXnote = /(?<!:)\/\/(?!,).+?(?:\n|$)/g;
-    var regXhttp = /^(?:https*:\/\/|www\.).+/g;
+    var regXhttp = /(?:https*:\/\/|www\.).+/g;
     var regXjs = /function\s\w+\(|var [\w|\$]\w+\s*\=|alert\(/;
     var code = document.getElementById("textbox_code").value;
     var noteArr = [];
@@ -1053,22 +1053,21 @@ function saveTo(){
         Array.from(httpMatch).forEach(item => {
             httpArr.push(item);
         });
-       
+        noteArr.push(code.replace(regXhttp, ''));
     }
     if(regXjs.test(code) === true){ 
         var scrpt = code.replace(regXnote, '').replace(/\n|\r/g, '');
         var cmntMatch = code.match(regXnote);
-        
         Array.from(cmntMatch).forEach(item => {
             noteArr.push(item);
         });
-
-    }else{
-        noteArr.push(code.replace(regXhttp, '').replace(/\n|\r/g, ''));
+    }
+    if(regXjs.test(code) === false && regXhttp.test(code) === false){
+        noteArr.push(code.replace(regXhttp, ''));
     }
 
-    var noteString = encodeURIComponent(noteArr.toString());
-    var httpString = encodeURIComponent(httpArr.toString().replace(/,$/, ''));
+    var noteString = '"'+encodeURIComponent(noteArr.toString().replace(/\b\n\b/g, '","').replace(/\n|\r/g, ''))+'"';
+    var httpString = '"'+encodeURIComponent(httpArr.toString().replace(/,$/, '').replace(/,/g, '","'))+'"';
     var output = YOURwebAppURL+'?cd='+scrpt+'&nt='+noteString+'&hl='+httpString; 
     
     if(output.length <3890){
