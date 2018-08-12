@@ -1,5 +1,6 @@
 var YOURwebAppURL = 'REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP LINK';
 
+
 function quickliNow(){
 var groupArr = [{
   "v": "c# net",
@@ -871,6 +872,7 @@ cDiv.style.background = "DarkSlateGrey";
 cDiv.style.borderRadius = "1em";
 cDiv.style.padding = "3px";
 cDiv.style.zIndex = "10000";
+cDiv.style.opacity = ".9";
 cDiv.style.fontFamily = '"Courier New", monospace';
 
 var clsBtn = document.createElement("button");
@@ -911,6 +913,7 @@ expndBtn.style.fontFamily = '"Courier New", monospace';
 expndBtn.style.fontWeight = "bold";
 expndBtn.style.color = "Crimson";
 
+
 var quickliBtn = document.createElement("button");
 document.getElementById("pop_container").appendChild(quickliBtn);
 quickliBtn.setAttribute("id", "quickli_search");
@@ -919,7 +922,7 @@ quickliBtn.style.position = "absolute";
 quickliBtn.style.background = "DarkCyan";
 quickliBtn.style.border = "1px solid DarkSlateGrey";
 quickliBtn.style.display = "inline-block";
-quickliBtn.style.transform = "scale(1.5, 1.5) translate(160px, -10px)";
+quickliBtn.style.transform = "scale(1.3, 1.3) translate(160px, -10px)";
 quickliBtn.style.borderRadius = "1em";
 quickliBtn.style.cursor = "pointer";
 quickliBtn.style.userSelect = "none";
@@ -937,9 +940,9 @@ textbox_1.style.border = "1px solid DarkSlateGrey";
 textbox_1.style.background = "FloralWhite";
 textbox_1.style.borderRadius = "1em";
 textbox_1.style.display = "block";
-textbox_1.style.fontSize = "1em";
 textbox_1.style.userSelect = "none";
 textbox_1.style.transform = "translate(0px, 5%)";
+textbox_1.style.fontSize = "1.1em";
 textbox_1.style.fontFamily = '"Courier New", monospace';
 
 var evalBtn = document.createElement("button");
@@ -948,12 +951,13 @@ evalBtn.setAttribute("id", "evalbtn_box");
 document.getElementById("evalbtn_box").innerText = "runTheCode";
 evalBtn.style.background = "DarkCyan";
 evalBtn.style.border = "1px solid DarkSlateGrey";
-evalBtn.style.width = "31.5%";
+evalBtn.style.width = "30.5%";
 evalBtn.style.height = "33px";
 evalBtn.style.borderRadius = "1em";
 evalBtn.style.cursor = "pointer";
 evalBtn.style.color = "white";
 evalBtn.style.transform = "translate(0px, 55%)";
+evalBtn.style.fontFamily = '"Courier New", monospace';
 
 var encodeBtn = document.createElement("button");
 document.getElementById("pop_container").appendChild(encodeBtn);
@@ -961,12 +965,13 @@ encodeBtn.setAttribute("id", "encodebtn_box");
 document.getElementById("encodebtn_box").innerText = "bookmarklet";
 encodeBtn.style.background = "DarkCyan";
 encodeBtn.style.border = "1px solid DarkSlateGrey";
-encodeBtn.style.width = "31.5%";
+encodeBtn.style.width = "30.5%";
 encodeBtn.style.height = "33px";
 encodeBtn.style.borderRadius = "1em";
 encodeBtn.style.cursor = "pointer";
 encodeBtn.style.color = "white";
 encodeBtn.style.transform = "translate(6%, 55%)";
+encodeBtn.style.fontFamily = '"Courier New", monospace';
 
 var saveBtn = document.createElement("button");
 document.getElementById("pop_container").appendChild(saveBtn);
@@ -974,12 +979,13 @@ saveBtn.setAttribute("id", "savebtn_box");
 document.getElementById("savebtn_box").innerText = "saveToSheets";
 saveBtn.style.background = "DarkCyan";
 saveBtn.style.border = "1px solid DarkSlateGrey";
-saveBtn.style.width = "31.5%";
+saveBtn.style.width = "30.5%";
 saveBtn.style.height = "33px";
 saveBtn.style.borderRadius = "1em";
 saveBtn.style.cursor = "pointer";
 saveBtn.style.color = "white";
 saveBtn.style.transform = "translate(12%, 55%)";
+saveBtn.style.fontFamily = '"Courier New", monospace';
 
 
 dragElement(document.getElementById(("pop_container")));
@@ -989,12 +995,28 @@ document.getElementById("quickli_search").addEventListener("click", runQuickli);
 document.getElementById("savebtn_box").addEventListener("click", saveTo);
 document.getElementById("note_btn_close").addEventListener("click", close);
 document.getElementById("btn_expnd").addEventListener("click", expand);
-
-
 textbox_1.addEventListener('keyup', tabIs);
+window.addEventListener('scroll', transparantElm); 
+window.addEventListener('keydown', typeOverElm);
+
+function transparantElm(){
+    cDiv.style.opacity = ".7";
+}
+function typeOverElm(){
+    cDiv.style.opacity = ".88";
+}
 
 function close() {
-  document.body.removeChild(document.getElementById("pop_container"));
+    function first(){
+        if (document.getElementById("textbox_code").value != ''){
+            document.getElementById("textbox_code").select();
+            document.execCommand("copy");
+        }
+    }
+    var f = new Promise(res =>{
+        res(first());
+    });
+    f.then(document.body.removeChild(document.getElementById("pop_container")))
 }
 function expand(){
     function expandSwitcher(wdht,rotate){
@@ -1012,9 +1034,9 @@ function expand(){
         expandSwitcher(["60%", "50%"], "90");
     }
     if(currentWidth == "60%"){
-        expandSwitcher(["26%", "85%"], "-90");
+        expandSwitcher(["26%", "92%"], "-90");
     }
-    if(currentHeight == "85%" && currentWidth == "26%"){
+    if(currentHeight == "92%" && currentWidth == "26%"){
         expandSwitcher(["26%", "12%"], "90");
     }
     if(currentHeight == "12%" && currentWidth == "26%"){
