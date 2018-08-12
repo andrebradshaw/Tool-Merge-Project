@@ -1,4 +1,4 @@
-var YOURwebAppURL = 'https://script.google.com/macros/s/AKfycbwo17K08_1Yv5urqt9dY0Gz-oZY9_vrmSuldVQwI56IIH7G3Cc/exec';
+var YOURwebAppURL = 'REPLACE THIS with your GOOGLE APPS WEB APP URL';
 
 function replaceAll(rx,vl,str){    for(i=0; i<vl.length; i++){        str.replace(rx[i], vl[i]);    }    return str;}
 function grouped(e, n){  if(e != null){    return e[n].toString();  }else{    return "";  }}
