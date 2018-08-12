@@ -1,5 +1,7 @@
-var YOURwebAppURL = 'REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP LINK';
+var YOURwebAppURL = 'https://script.google.com/macros/s/AKfycbwo17K08_1Yv5urqt9dY0Gz-oZY9_vrmSuldVQwI56IIH7G3Cc/exec';
 
+function replaceAll(rx,vl,str){    for(i=0; i<vl.length; i++){        str.replace(rx[i], vl[i]);    }    return str;}
+function grouped(e, n){  if(e != null){    return e[n].toString();  }else{    return "";  }}
 
 function quickliNow(){
 var groupArr = [{
@@ -817,13 +819,7 @@ function searchLI() {
 
 }
 
-function grouped(e, n){
-  if(e != null){
-    return e[n].toString();
-  }else{
-    return '';
-  }
-}
+
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
@@ -866,7 +862,7 @@ cDiv.style.position = "fixed";
 cDiv.style.top = "20px";
 cDiv.style.left = "2%";
 cDiv.style.width = "26%";
-cDiv.style.height = "50%";
+cDiv.style.height = "12%";
 cDiv.style.border = "1px solid DarkSlateGrey ";
 cDiv.style.background = "DarkSlateGrey";
 cDiv.style.borderRadius = "1em";
@@ -882,7 +878,7 @@ document.getElementById("note_btn_close").innerText = "+";
 clsBtn.style.position = "absolute";
 clsBtn.style.background = "transparent";
 clsBtn.style.display = "inline-block";
-clsBtn.style.transform = "scale(4.5, 4.5) translate(3px, -1px) rotate(45deg)";
+clsBtn.style.transform = "scale(3.8, 3.8) translate(3px, -6px) rotate(45deg)";
 clsBtn.style.borderRadius = "1em";
 clsBtn.style.transition = "all 366ms";
 clsBtn.style.transitionTimingFunction = "cubic-bezier(1,-1.12,.18,1.93)";
@@ -902,7 +898,7 @@ document.getElementById("btn_expnd").innerText = ">";
 expndBtn.style.position = "absolute";
 expndBtn.style.background = "transparent";
 expndBtn.style.display = "inline-block";
-expndBtn.style.transform = "scale(2.5, 2.5) translate(30px, -5px) rotate(0deg)";
+expndBtn.style.transform = "scale(3.5, 3.5) translate(20px, -6.5px) rotate(90deg)";
 expndBtn.style.borderRadius = "1em";
 expndBtn.style.padding = "0px";
 expndBtn.style.boxShadow = "0px";
@@ -911,8 +907,7 @@ expndBtn.style.cursor = "pointer";
 expndBtn.style.userSelect = "none";
 expndBtn.style.fontFamily = '"Courier New", monospace';
 expndBtn.style.fontWeight = "bold";
-expndBtn.style.color = "Crimson";
-
+expndBtn.style.color = "MediumSeaGreen";
 
 var quickliBtn = document.createElement("button");
 document.getElementById("pop_container").appendChild(quickliBtn);
@@ -948,7 +943,7 @@ textbox_1.style.fontFamily = '"Courier New", monospace';
 var evalBtn = document.createElement("button");
 document.getElementById("pop_container").appendChild(evalBtn);
 evalBtn.setAttribute("id", "evalbtn_box");
-document.getElementById("evalbtn_box").innerText = "runTheCode";
+document.getElementById("evalbtn_box").innerText = "runScript";
 evalBtn.style.background = "DarkCyan";
 evalBtn.style.border = "1px solid DarkSlateGrey";
 evalBtn.style.width = "30.5%";
@@ -976,7 +971,7 @@ encodeBtn.style.fontFamily = '"Courier New", monospace';
 var saveBtn = document.createElement("button");
 document.getElementById("pop_container").appendChild(saveBtn);
 saveBtn.setAttribute("id", "savebtn_box");
-document.getElementById("savebtn_box").innerText = "saveToSheets";
+document.getElementById("savebtn_box").innerText = "send2Sheets";
 saveBtn.style.background = "DarkCyan";
 saveBtn.style.border = "1px solid DarkSlateGrey";
 saveBtn.style.width = "30.5%";
@@ -1022,7 +1017,7 @@ function expand(){
     function expandSwitcher(wdht,rotate){
         document.getElementById("pop_container").style.width = wdht[0];
         document.getElementById("pop_container").style.height = wdht[1];
-        document.getElementById("btn_expnd").style.transform = 'scale(2.5, 2.5) translate(30px, -5px) rotate('+rotate+'deg)';
+        document.getElementById("btn_expnd").style.transform = 'scale(3.5, 3.5) translate(20px, -6.5px) rotate('+rotate+'deg)';
         document.getElementById("btn_expnd").style.transition = "all 366ms";
         document.getElementById("pop_container").style.transition = "all 366ms";
         document.getElementById("pop_container").style.transitionTimingFunction = "cubic-bezier(1,-1,.18,1.93)";
@@ -1043,7 +1038,16 @@ function expand(){
         expandSwitcher(["26%", "50%"], "0");
     }
 }
+
+var grped = 'function grouped(e,n){\n    if(e != null){\n        return e[n].toString();\n    }else{\n        return "";\n    }\n}';
+var lastRowIn = "function lastRowByCol(colNum){\n  var rowArr = [];\n  var data = s1.getRange(1, colNum, s1.getLastRow(), 1).getValues();\n  for(i =(data.length-1); i >=0;  i--){\n    if (data[i][0] != null && data[i][0] != ''){\n      rowArr.push(i+1);\n    }\n  }\n  return Math.max.apply(null, rowArr);\n}";
+var unq = 'function uniq(arrg) {\n  return arrg.filter(function(elm,pos,arr) {\n    return arr.indexOf(elm) == pos;\n  });\n}';
+
 function tabIs(){
+    var regXgrouped = /function grouped\s*\($|fn grouped\s*\($/i;
+    var regXlstRow = /function lastRowByCol\s*\($|fn lastRowByCol\s*\($/i;
+    var regXunq = /function uniq\s*\($|fn uniq\s*\($/i;
+    
     var start = this.selectionStart;
     var end = this.selectionEnd;
     if(/\{\}/.exec(this.value) == "{}"){
@@ -1052,6 +1056,15 @@ function tabIs(){
         this.selectionEnd = end+4;
         this.focus();
     }
+    if(regXgrouped.test(this.value) === true){
+       this.value = this.value.replace(regXgrouped, grped);
+    }
+    if(regXlstRow.test(this.value) === true){
+       this.value = this.value.replace(regXlstRow, lastRowIn);
+    }
+    if(regXunq.test(this.value) === true){
+       this.value = this.value.replace(regXunq, unq);
+    }
 }
 
 
@@ -1059,7 +1072,6 @@ function execute(){
   var code = document.getElementById("textbox_code").value;
     eval(code);
 }
-
 
 function saveTo(){
     var regXnote = /(?<!:)\/\/(?!,).+?(?:\n|$)/g;
