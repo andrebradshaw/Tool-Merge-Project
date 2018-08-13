@@ -878,7 +878,7 @@ document.getElementById("note_btn_close").innerText = "+";
 clsBtn.style.position = "absolute";
 clsBtn.style.background = "transparent";
 clsBtn.style.display = "inline-block";
-clsBtn.style.transform = "scale(3.8, 3.8) translate(3px, -6px) rotate(45deg)";
+clsBtn.style.transform = "scale(3.8, 3.8) translate(-10%, -25%) rotate(45deg)";
 clsBtn.style.borderRadius = "1em";
 clsBtn.style.transition = "all 366ms";
 clsBtn.style.transitionTimingFunction = "cubic-bezier(1,-1.12,.18,1.93)";
@@ -898,7 +898,7 @@ document.getElementById("btn_expnd").innerText = ">";
 expndBtn.style.position = "absolute";
 expndBtn.style.background = "transparent";
 expndBtn.style.display = "inline-block";
-expndBtn.style.transform = "scale(3.5, 3.5) translate(20px, -6.5px) rotate(90deg)";
+expndBtn.style.transform = "scale(3.5, 3.5) translate(250%, -25%) rotate(90deg)";
 expndBtn.style.borderRadius = "1em";
 expndBtn.style.padding = "0px";
 expndBtn.style.boxShadow = "0px";
@@ -917,7 +917,7 @@ quickliBtn.style.position = "absolute";
 quickliBtn.style.background = "DarkCyan";
 quickliBtn.style.border = "1px solid DarkSlateGrey";
 quickliBtn.style.display = "inline-block";
-quickliBtn.style.transform = "scale(1.3, 1.3) translate(160px, -10px)";
+quickliBtn.style.transform = "scale(1.1, 1.1) translate(380%, -80%)";
 quickliBtn.style.borderRadius = "1em";
 quickliBtn.style.cursor = "pointer";
 quickliBtn.style.userSelect = "none";
@@ -929,7 +929,7 @@ var textbox_1 = document.createElement("TEXTAREA");
 textbox_1.setAttribute("id", "textbox_code");
 document.getElementById("pop_container").appendChild(textbox_1);
 textbox_1.style.width = "99%";
-textbox_1.style.height = "83%";
+textbox_1.style.height = "92%";
 textbox_1.style.padding = "6px";
 textbox_1.style.border = "1px solid DarkSlateGrey";
 textbox_1.style.background = "FloralWhite";
@@ -998,7 +998,7 @@ function transparantElm(){
     cDiv.style.opacity = ".7";
 }
 function typeOverElm(){
-    cDiv.style.opacity = ".88";
+    cDiv.style.opacity = ".92";
 }
 
 function close() {
@@ -1017,7 +1017,7 @@ function expand(){
     function expandSwitcher(wdht,rotate){
         document.getElementById("pop_container").style.width = wdht[0];
         document.getElementById("pop_container").style.height = wdht[1];
-        document.getElementById("btn_expnd").style.transform = 'scale(3.5, 3.5) translate(20px, -6.5px) rotate('+rotate+'deg)';
+        document.getElementById("btn_expnd").style.transform = 'scale(3.5, 3.5) translate(280%, -25%) rotate('+rotate+'deg)';
         document.getElementById("btn_expnd").style.transition = "all 366ms";
         document.getElementById("pop_container").style.transition = "all 366ms";
         document.getElementById("pop_container").style.transitionTimingFunction = "cubic-bezier(1,-1,.18,1.93)";
