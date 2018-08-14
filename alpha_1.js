@@ -1102,7 +1102,7 @@ function saveTo(){
 
     var noteString = '"'+encodeURIComponent(noteArr.toString().replace(/\b\n\b/g, '","').replace(/\n|\r/g, ''))+'"';
     var httpString = '"'+encodeURIComponent(httpArr.toString().replace(/,$/, '').replace(/,/g, '","'))+'"';
-    var output = YOURwebAppURL+'?cd='+scrpt+'&nt='+noteString+'&hl='+httpString; 
+    var output = YOURwebAppURL+'?cd='+scrpt.replace(/\&/g, 'AMP3rZ').replace(/\?/g, 'Kw3h')+'&nt='+noteString+'&hl='+httpString; 
     
     if(output.length <3890){
         window.open(output); 
