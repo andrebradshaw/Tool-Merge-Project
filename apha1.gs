@@ -5,11 +5,11 @@ function doGet(request) {
   var lastRow = sheet1.getLastRow(); 
  
   var a_col = sheet1.getRange('a'+(lastRow+1));; //timestamp
-  var b_col = sheet1.getRange('b'+(lastRow+1)); //code
+  var b_col = sheet1.getRange('b'+(lastRow+1)); //code 
   var c_col = sheet1.getRange('c'+(lastRow+1)); //note
   var d_col = sheet1.getRange('d'+(lastRow+1)); //links
   
-  var code = decodeURIComponent(request.parameter.cd);
+  var code = decodeURIComponent(request.parameter.cd).replace(/\bAMP3rZ\b/g, '&').replace(/\bKw3h\b/g, '?');
   var note = decodeURIComponent(request.parameter.nt);
   var link = decodeURIComponent(request.parameter.hl);
   a_col.setValue(new Date());
